@@ -1,6 +1,6 @@
 # CSS variable with JS
 
-3th challenge.
+3rd challenge.
 
 # You can try
 
