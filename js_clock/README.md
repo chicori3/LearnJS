@@ -2,6 +2,6 @@
 
 Day 2 challenge.
 
-# You can play with drums on the web.
+# You can see it.
 
 http://chicori3.github.io/LearnJS/js_clock/index.html
