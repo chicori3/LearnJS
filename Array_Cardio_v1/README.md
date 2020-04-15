@@ -18,7 +18,7 @@ const inventors = [
   { first: "Hanna", last: "Hammarström", year: 1829, passed: 1909 }
 ];
 ```
-1. Array.prototype.filter()
+## 1. Array.prototype.filter()
   > + 1500년도에 태어난 inventors를 추려내기<br>
   ```
   const fifteen = inventors.filter(
@@ -29,7 +29,7 @@ const inventors = [
   ```
   > - filter() 메서드는 주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환합니다.
   
-2. Array.prototype.map()
+## 2. Array.prototype.map()
   > + inventor의 first와 last를 배열로 뽑기<br>
   ```
   const fullName = inventors.map(
@@ -40,7 +40,7 @@ console.log(fullName);
   ```
   > - map() 메서드는 배열 내의 모든 요소 각각에 대하여 주어진 함수를 호출한 결과를 모아 새로운 배열을 반환합니다.
   
-3. Array.prototype.sort()
+## 3. Array.prototype.sort()
   > 1. inventor의 생년을 기준으로 늙은 순으로 정렬<br>
   ```
   const age = inventors.sort(
@@ -61,7 +61,7 @@ console.log(fullName);
   ```
   > - sort() 메서드는 배열의 요소를 적절한 위치에 정렬한 후 그 배열을 반환합니다.
  
-4. Array.prototype.reduce()
+## 4. Array.prototype.reduce()
   > + 모든 inventor의 나이의 합 구하기<br>
   ```
   const totalYears = inventors.reduce((total, inventor) => {
