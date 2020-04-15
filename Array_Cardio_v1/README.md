@@ -2,7 +2,7 @@
 
 - 4번째 챌린지 Array Cardio V1
    + Array의 Object들을 다루는 다양한 방법을 학습
-```
+```javascript
 const inventors = [
   { first: "Albert", last: "Einstein", year: 1879, passed: 1955 },
   { first: "Isaac", last: "Newton", year: 1643, passed: 1727 },
@@ -20,7 +20,7 @@ const inventors = [
 ```
 ## 1. Array.prototype.filter()
   > + 1500년도에 태어난 inventors를 추려내기<br>
-  ```
+  ```javascript
   const fifteen = inventors.filter(
     inventor => (inventor.year >= 1500 && inventor.year < 1600)
   );
@@ -31,7 +31,7 @@ const inventors = [
   
 ## 2. Array.prototype.map()
   > + inventor의 first와 last를 배열로 뽑기<br>
-  ```
+  ```javascript
   const fullName = inventors.map(
     inventor => `${inventor.first} ${inventor.last}`
   );
@@ -42,7 +42,7 @@ console.log(fullName);
   
 ## 3. Array.prototype.sort()
   > 1. inventor의 생년을 기준으로 늙은 순으로 정렬<br>
-  ```
+  ```javascript
   const age = inventors.sort(
     (a, b) => (a.year > b.year ? 1 : -1)
    );
@@ -50,7 +50,7 @@ console.log(fullName);
   console.table(age);
   ```
   > 2. inventor의 살아온 햇수 구하기<br>
-  ```
+  ```javascript
   const oldest = inventors.sort(function(a, b) {
     const lastGuy = a.passed - a.year;
     const nextGuy = b.passed - b.year;
@@ -63,7 +63,7 @@ console.log(fullName);
  
 ## 4. Array.prototype.reduce()
   > + 모든 inventor의 나이의 합 구하기<br>
-  ```
+  ```javascript
   const totalYears = inventors.reduce((total, inventor) => {
     return total + (inventor.passed - inventor.year);
   }, 0);
