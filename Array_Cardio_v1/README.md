@@ -27,7 +27,7 @@ const inventors = [
 
   console.table(fifteen);
   ```
-   - filter() 메서드는 주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환합니다.
+   - filter() 메서드는 주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환한다.
   
 ## 2. Array.prototype.map()
    + inventor의 first와 last를 배열로 뽑기<br>
@@ -38,7 +38,7 @@ const inventors = [
 
 console.log(fullName);
   ```
-   - map() 메서드는 배열 내의 모든 요소 각각에 대하여 주어진 함수를 호출한 결과를 모아 새로운 배열을 반환합니다.
+   - map() 메서드는 배열 내의 모든 요소 각각에 대하여 주어진 함수를 호출한 결과를 모아 새로운 배열을 반환한다.
   
 ## 3. Array.prototype.sort()
    1. inventor의 생년을 기준으로 늙은 순으로 정렬<br>
@@ -59,7 +59,7 @@ console.log(fullName);
 
   console.table(oldest);
   ```
-  - sort() 메서드는 배열의 요소를 적절한 위치에 정렬한 후 그 배열을 반환합니다.
+  - sort() 메서드는 배열의 요소를 적절한 위치에 정렬한 후 그 배열을 반환한다.
  
 ## 4. Array.prototype.reduce()
    + 모든 inventor의 나이의 합 구하기<br>
@@ -70,4 +70,4 @@ console.log(fullName);
   
   console.log(totalYears);
   ```
-   - reduce() 메서드는 배열의 각 요소에 대해 주어진 reduce 함수를 실행하고, 하나의 결과값을 반환합니다.
+   - reduce() 메서드는 배열의 각 요소에 대해 주어진 reduce 함수를 실행하고, 하나의 결과값을 반환다.
