@@ -2,6 +2,7 @@
 
 + 6번째 챌린지 Type Ahead
   - 웹에서 정보를 받아 Search 기능을 만들어보자.
+  - 이해하기 어려운 것들이 많았다.
   - Link https://chicori3.github.io/LearnJS/type_ahead
 
 ## 1. 데이터 이용하기
