@@ -20,68 +20,62 @@ const comments = [
 ];
 ```
 
-## 1. Array.prototype.filter()
+## 1. Array.prototype.some()
 
-- 1500년도에 태어난 inventors를 추려내기<br>
+- 19세 이상이 한 사람이라도 있는가   
 
 ```javascript
-const fifteen = inventors.filter(
-  (inventor) => inventor.year >= 1500 && inventor.year < 1600
+const isAdult = people.some(
+  (person) => new Date().getFullYear() - person.year >= 19
 );
 
-console.table(fifteen);
+console.log({ isAdult });
 ```
 
-- filter() 메서드는 주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환한다.
+- _some()_ 메서드는 배열 안의 어떤 요소라도 주어진 판별 함수를 통과하는지 테스트한다.
+- 빈 배열에서는 무조건 _false_ 를 반환한다.
 
-## 2. Array.prototype.map()
+## 2. Array.prototype.every()
 
 - inventor의 first와 last를 배열로 뽑기<br>
 
 ```javascript
-const fullName = inventors.map(
-  (inventor) => `${inventor.first} ${inventor.last}`
+const allAdult = people.every(
+  (person) => new Date().getFullYear() - person.year >= 19
 );
 
-console.log(fullName);
+console.log({ allAdult });
 ```
 
-- map() 메서드는 배열 내의 모든 요소 각각에 대하여 주어진 함수를 호출한 결과를 모아 새로운 배열을 반환한다.
+- _every()_ 메서드는 배열 안의 모든 요소가 주어진 판별 함수를 통과하는지 테스트한다.
+- 빈 배열에서는 무조건 _true_ 를 반환한다.
 
-## 3. Array.prototype.sort()
+## 3. Array.prototype.find()
 
-1.  inventor의 생년을 기준으로 늙은 순으로 정렬<br>
+- ID 823423의 comment 찾기
 
 ```javascript
-const age = inventors.sort((a, b) => (a.year > b.year ? 1 : -1));
+const comment = comments.find((comment) => comment.id === 823423);
 
-console.table(age);
+console.log(comment);
 ```
+- _find()_ 메서드는 주어진 판별 함수를 만족하는 첫 번째 요소의 값을 반환한다.
+- 그런 요소가 없다면 _undefined_ 를 반환한다.
 
-2.  inventor의 살아온 햇수 구하기<br>
+## 4. Array.prototype.findIndex()
+
+- ID 823423의 comment 지우기
 
 ```javascript
-const oldest = inventors.sort(function (a, b) {
-  const lastGuy = a.passed - a.year;
-  const nextGuy = b.passed - b.year;
-  return lastGuy > nextGuy ? -1 : 1;
-});
+const index = comments.findIndex((comment) => comment.id === 823423);
 
-console.table(oldest);
+console.log(index);
+
+const newComments = [...comments.slice(0, index), ...comments.slice(index + 1)];
+
+console.table(newComments);
+
 ```
 
-- sort() 메서드는 배열의 요소를 적절한 위치에 정렬한 후 그 배열을 반환한다.
-
-## 4. Array.prototype.reduce()
-
-- 모든 inventor의 나이의 합 구하기<br>
-
-```javascript
-const totalYears = inventors.reduce((total, inventor) => {
-  return total + (inventor.passed - inventor.year);
-}, 0);
-
-console.log(totalYears);
-```
-
-- reduce() 메서드는 배열의 각 요소에 대해 주어진 reduce 함수를 실행하고, 하나의 결과값을 반환다.
+- _findIndex()_ 메서드는 주어진 판별 함수를 만족하는 배열의 첫 번째 요소에 대한 인덱스를 반환한다.
+- 만족하는 요소가 없으면 -1을 반환한다.
