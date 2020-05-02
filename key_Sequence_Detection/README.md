@@ -1,121 +1,54 @@
-# Custom Video Player
+# Key Sequence Detection
 
-- 11번째 챌린지 Custom Video Player
-   + HTML Viedo Player를 Custom 해보자
-   + Link [Custom_Video](https://chicori3.github.io/LearnJS/custom_video/)
+- 12번째 챌린지 Key Sequence Detection
+   + 특정 키 조합을 타이핑하면 이벤트가 실행된다.
+   
 ```html
-<div class="player">
-      <video class="player__video viewer" src="652333414.mp4"></video>
+   <head>
+     <meta charset="UTF-8">
+     <title>Key Detection</title>
+     <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+   </head>
+   <body>
+   <script>
+   const pressed = [];
+   const secretCode = 'wesbos';
 
-      <div class="player__controls">
-        <div class="progress">
-          <div class="progress__filled"></div>
-        </div>
-        <button class="player__button toggle" title="Toggle Play">►</button>
-        <input
-          type="range"
-          name="volume"
-          class="player__slider"
-          min="0"
-          max="1"
-          step="0.05"
-          value="1"
-        />
-        <input
-          type="range"
-          name="playbackRate"
-          class="player__slider"
-          min="0.5"
-          max="2"
-          step="0.1"
-          value="1"
-        />
-        <button data-skip="-10" class="player__button">« 10s</button>
-        <button data-skip="25" class="player__button">25s »</button>
-      </div>
-    </div>
+   window.addEventListener('keyup', (e) => {
+     console.log(e.key);
+     pressed.push(e.key);
+     pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+     if (pressed.join('').includes(secretCode)) {
+       console.log('DING DING!');
+       cornify_add();
+     }
+     console.log(pressed);
+   });
+   </script>
 ```
-## 1. Video Element 상수 선언
+## 1. 상수 선언
   ```javascript
-  const player = document.querySelector(".player");
-  const video = player.querySelector(".viewer");
-  const progress = player.querySelector(".progress");
-  const progressBar = player.querySelector(".progress__filled");
-  const toggle = player.querySelector(".toggle");
-  const skipButtons = player.querySelectorAll("[data-skip]");
-  const ranges = player.querySelectorAll(".player__slider");
+   const pressed = [];
+   const secretCode = 'wesbos';
   ```
-   - Video custom에 필요한 모든 Element를 상수로 선언한다.
+   - 빈 배열과 비밀암호를 선언한다.
   
-## 2. Video를 실행시키는 함수, 이벤트 생성
+## 2. 누른 키를 배열에 추가하고 비밀암호와 일치하면 이벤트 실행
   ```javascript
-  function togglePlay() {
-    const method = video.paused ? "play" : "pause";
-    video[method]();
-  }
-  
-  video.addEventListener("click", togglePlay);
+   window.addEventListener("keyup", (e) => {
+     console.log(e.key);
+     pressed.push(e.key);
+     pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+     if (pressed.join("").includes(secretCode)) {
+       console.log("Ding Ding!");
+       cornify_add();
+     }
+     console.log(pressed);
+   });
   ```
-   - _method_ 는 Video가 멈춰 있을 때는 play, 실행 중일때는 pasue를 하는 조건문.
-   - 이벤트리스너를 추가해 click 이벤트 발생 시 togglePlay 함수가 실행된다.
-  
-## 3. Video 상태에 따라 버튼 변경
-  ```javascript
-  function updateButton() {
-    const icon = this.paused ? "▶️" : "❚ ❚";
-    toggle.textContent = icon;
-  }
-
-  video.addEventListener("play", updateButton);
-  video.addEventListener("pause", updateButton);
-  ```
-   - _icon_ 상수에 버튼이 바뀌는 조건문을 선언한다.
-   - 이벤트리스너를 추가해 play, pause가 될 때마다 updateButton 함수를 실행한다.
-   
-## 4. 스킵 기능 추가
-  ```javascript
-  function skip() {
-  video.currentTime += parseFloat(this.dataset.skip);
-  }
-  
-  skipButtons.forEach((button) => button.addEventListener("click", skip));
-  ```
-   - _parseFloat()_ 함수는 문자열을 실수로 반환한다.
-   
-## 4. 볼륨, 속도를 조절하는 range 추가
-  ```javascript
-  function handleRangeUpdate() {
-    video[this.name] = this.value;
-  }
-  
-  ranges.forEach((range) => range.addEventListener("change", handleRangeUpdate));
-  ranges.forEach((range) => range.addEventListener("mousemove", handleRangeUpdate));
-  ```
-   - range-bar에 이벤트리스너를 추가한다.
-
-## 5. 재생 시간에 따른 재생 바 추가
-  ```javascript
-  function handleProgress() {
-    const percent = (video.currentTime / video.duration) * 100;
-    progressBar.style.flexBasis = `${percent}%`;
-  }
-
-  video.addEventListener("timeupdate", handleProgress);
-  ```
-   - Video의 남은 시간을 percent로 치환하여 업데이트한다.
-   
-## 6. 재생 바 이벤트 추가
-  ```javascript
-  function scrub(e) {
-    const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
-    video.currentTime = scrubTime;
-  }
-
-  let mousedown = false;
-  progress.addEventListener("click", scrub);
-  progress.addEventListener("mousemove", () => mousedown && scrub(e));
-  progress.addEventListener("mousedown", () => (mousedown = true));
-  progress.addEventListener("mousedown", () => (mousedown = false));
-  ```
-   - 이벤트 발생 시 scrub() 함수가 실행된다.
-   - 재생 바를 옮기거나 원하는 위치를 누르면 실시간으로 변경된다.
+   - 입력한 키를 빈 배열에 _push_ 한다.
+   - splice() 메서드는 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용을 변경한다.
+   - 배열의 길이를 비밀암호의 길이와 일치하도록 설정한다.
+   - join() 메서드는 배열의 모든 요소를 연결해 하나의 문자열로 만든다.
+   - includes() 메서드는 배열이 특정 요소를 포함하고 있는지 판별한다.
+   - 배열에 추가된 키 값이 비밀암호와 일치하면 설정한 이벤트가 실행된다.
