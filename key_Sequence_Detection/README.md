@@ -31,7 +31,7 @@
    const pressed = [];
    const secretCode = 'wesbos';
   ```
-   - 빈 배열과 비밀암호를 선언한다.
+   - 빈 배열과 이벤트 실행에 필요한 비밀암호를 선언한다.
   
 ## 2. 누른 키를 배열에 추가하고 비밀암호와 일치하면 이벤트 실행
   ```javascript
